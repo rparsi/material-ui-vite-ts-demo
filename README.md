@@ -9,6 +9,8 @@ Then run `npm run build`.  The content of the `dist` directory can then be deplo
 
 For local dev work, use `npm run preview -- --host` or `npm run dev -- --host`.
 
+To run tests: `npm run test` (make sure your test file names have ".spec." or ".test.", ie `sanityCheck.spec.js`).
+
 Pay attention to the port number in the output, you'll need that to access the dev or preview build from
 your host machine's browser.
 
