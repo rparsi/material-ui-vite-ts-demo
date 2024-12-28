@@ -19,5 +19,5 @@ describe('Testing uuid generation', () => {
         vi.mocked(nanoid).mockReturnValue(id);
         expect(generateId()).toEqual(id);
         expect(nanoid).toHaveBeenCalledOnce();
-    })
+    });
 });
