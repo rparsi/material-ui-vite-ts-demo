@@ -5,7 +5,7 @@ import LocalStorageDriver from "./LocalStorageDriver";
 import { StorageDriverInterface } from "./StorageDriverInterface";
 import { generateId } from "../../component/uuid";
 
-class NoteBookRepository {
+export default class NoteBookRepository {
     storageDriver: StorageDriverInterface;
 
     constructor() {
@@ -43,5 +43,3 @@ class NoteBookRepository {
         return this.storageDriver.delete(noteBook);
     }
 };
-
-export default NoteBookRepository;

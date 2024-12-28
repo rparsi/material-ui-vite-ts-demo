@@ -1,6 +1,8 @@
 import { StorageConstraint, StorageDriverInterface } from "./StorageDriverInterface";
 
-class LocalStorageDriver implements StorageDriverInterface {
+export default class LocalStorageDriver implements StorageDriverInterface {
+    constructor(){}
+
     fetch<Type extends StorageConstraint>(entity: Type): Type | null {
         let key = this.generateKey(entity);
         let json = window.sessionStorage.getItem(key);
@@ -33,5 +35,3 @@ class LocalStorageDriver implements StorageDriverInterface {
         return true;
     }
 };
-
-export default LocalStorageDriver;
