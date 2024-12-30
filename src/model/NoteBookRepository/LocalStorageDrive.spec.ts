@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import LocalStorageDriver from "./LocalStorageDriver";
 import { StorageConstraint } from "./StorageDriverInterface";
+import { EntityType } from '../entity/EntityType';
 
 vi.stubGlobal('window', {
     sessionStorage: {
@@ -15,12 +16,11 @@ type TestType = StorageConstraint & {
     dummy: boolean | null;
 };
 
-const keyPreffix = 'test-preffix';
 const id = '100';
-const expectedKey = 'test-preffix_100';
+const expectedKey = 'USER_100';
 const testEntity: TestType = {
     id: id,
-    keyPreffix: keyPreffix,
+    entityType: EntityType.USER,
     dummy: true
 };
 const expectedValue = JSON.stringify(testEntity);
@@ -32,7 +32,7 @@ describe('Testing LocalStorageDriver', () => {
         vi.restoreAllMocks();
     });
   
-    it('generateKey should return "test-preffix_100"', () => {
+    it('generateKey should return "USER_100"', () => {
         const result = localStorageDriver.generateKey(testEntity);
         expect(result).toEqual(expectedKey);
     });

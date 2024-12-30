@@ -14,7 +14,7 @@ export default class LocalStorageDriver implements StorageDriverInterface {
     }
 
     generateKey<Type extends StorageConstraint>(entity: Type): string {
-        return entity.keyPreffix + '_' + entity.id;
+        return entity.entityType + '_' + entity.id;
     }
 
     save<Type extends StorageConstraint>(entity: Type): boolean {

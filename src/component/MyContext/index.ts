@@ -1,6 +1,7 @@
 import { User } from "../../model/entity/User";
 import { generateId } from "../uuid";
 import NoteBookRepository from "../../model/NoteBookRepository";
+import { EntityType } from "../../model/entity/EntityType";
 
 function initializeContext(): void {
     const time = new Date();
@@ -10,7 +11,7 @@ function initializeContext(): void {
         updatedAt: null,
         username: 'guest',
         sessionId: generateId(),
-        keyPreffix: 'user'
+        entityType: EntityType.USER
     } as User;
 
     const repository: NoteBookRepository = new NoteBookRepository();

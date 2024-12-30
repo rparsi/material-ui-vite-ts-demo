@@ -4,6 +4,7 @@ import { User } from "../entity/User";
 import LocalStorageDriver from "./LocalStorageDriver";
 import { StorageDriverInterface } from "./StorageDriverInterface";
 import { generateId } from "../../component/uuid";
+import { EntityType } from "../entity/EntityType";
 
 export default class NoteBookRepository {
     storageDriver: StorageDriverInterface;
@@ -20,7 +21,7 @@ export default class NoteBookRepository {
             content: 'my first note',
             createdAt: '' + time.getTime(),
             updatedAt: null,
-            keyPreffix: 'note'
+            entityType: EntityType.NOTE
         } as Note;
 
         const noteBook: NoteBook = {
@@ -29,7 +30,7 @@ export default class NoteBookRepository {
             updatedAt: null,
             user: user,
             notes: [note],
-            keyPreffix: 'notebook'
+            entityType: EntityType.NOTEBOOK
         } as NoteBook;
 
         return noteBook;

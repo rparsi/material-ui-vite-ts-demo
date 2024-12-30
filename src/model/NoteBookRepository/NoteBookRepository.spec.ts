@@ -5,6 +5,7 @@ import { NoteBook } from '../entity/NoteBook';
 import { generateId } from "../../component/uuid";
 import { Note } from '../entity/Note';
 import NoteBookRepository from '.';
+import { EntityType } from '../entity/EntityType';
 
 vi.mock("../../component/uuid", () => {
     const mockedGenerateId = vi.fn();
@@ -21,7 +22,7 @@ const user: User = {
     sessionId: 's-id',
     createdAt: 'now',
     updatedAt: null,
-    keyPreffix: 'user'
+    entityType: EntityType.USER
 };
 const expectedNote: Note = {
     id: '200',
@@ -29,7 +30,7 @@ const expectedNote: Note = {
     content: 'my first note',
     createdAt: expectedTime,
     updatedAt: null,
-    keyPreffix: 'note'
+    entityType: EntityType.NOTE
 };
 const expectedNoteBook: NoteBook = {
     id: '300',
@@ -37,7 +38,7 @@ const expectedNoteBook: NoteBook = {
     updatedAt: null,
     user: user,
     notes: [expectedNote],
-    keyPreffix: 'notebook'
+    entityType: EntityType.NOTEBOOK
 };
 
 describe('Testing NoteBookRepository class', () => {

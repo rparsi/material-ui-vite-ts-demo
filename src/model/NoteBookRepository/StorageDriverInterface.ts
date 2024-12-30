@@ -2,11 +2,11 @@ type IdConstraint = {
     id: number | string;
 };
 
-type KeyPreffixConstraint = {
-    keyPreffix: string | null;
+type EntityTypeConstraint = {
+    entityType: string | null;
 }
 
-export type StorageConstraint = IdConstraint & KeyPreffixConstraint;
+export type StorageConstraint = IdConstraint & EntityTypeConstraint;
 
 export interface StorageDriverInterface {
     fetch<Type extends StorageConstraint>(entity: Type): Type | null;
