@@ -1,5 +1,5 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
-import LocalStorageDriver from "./LocalStorageDriver";
+import LocalStorageDriver from "../StorageDriver";
 import { User } from "../entity/User";
 import { NoteBook } from '../entity/NoteBook';
 import { generateId } from "../../component/uuid";

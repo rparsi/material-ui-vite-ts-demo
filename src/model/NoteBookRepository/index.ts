@@ -1,13 +1,13 @@
 import { NoteBook } from "../entity/NoteBook";
 import { Note } from "../entity/Note";
 import { User } from "../entity/User";
-import LocalStorageDriver from "./LocalStorageDriver";
-import { StorageDriverInterface } from "./StorageDriverInterface";
+import LocalStorageDriver from "../StorageDriver";
+import { StorageDriverInterface } from "../StorageDriver/StorageDriverInterface";
 import { generateId } from "../../component/uuid";
 import { EntityType } from "../entity/EntityType";
 
 export default class NoteBookRepository {
-    storageDriver: StorageDriverInterface;
+    protected storageDriver: StorageDriverInterface;
 
     constructor() {
         this.storageDriver = new LocalStorageDriver();

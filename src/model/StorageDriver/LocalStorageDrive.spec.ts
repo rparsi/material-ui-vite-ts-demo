@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import LocalStorageDriver from "./LocalStorageDriver";
+import LocalStorageDriver from ".";
 import { StorageConstraint } from "./StorageDriverInterface";
 import { EntityType } from '../entity/EntityType';
 
@@ -8,7 +8,9 @@ vi.stubGlobal('window', {
         getItem: vi.fn(),
         setItem: vi.fn(),
         removeItem: vi.fn(),
-        clear: vi.fn()
+        clear: vi.fn(),
+        key: vi.fn(),
+        length: 2
     }
 });
 
@@ -91,5 +93,47 @@ describe('Testing LocalStorageDriver', () => {
         expect(window.sessionStorage.getItem).toHaveBeenCalledOnce();
         expect(result).toMatchObject(foundEntity);
         expect(entity.dummy).toBeNull();
+    });
+
+    it('test findIdFromKey', () => {
+        // case 1: key is empty string
+        let key = '';
+
+        let result = localStorageDriver.findIdFromKey(key, EntityType.USER);
+        expect(result).toBeNull();
+
+        // case 2: key does NOT contain the separator
+        key = EntityType.USER + id;
+        result = localStorageDriver.findIdFromKey(key, EntityType.USER);
+        expect(result).toBeNull();
+
+        // case 3: key DOES contain the separator but the split results in array size NOT equal to 2
+        key = EntityType.USER + localStorageDriver.SEPARATOR + id + localStorageDriver.SEPARATOR + EntityType.USER;
+        result = localStorageDriver.findIdFromKey(key, EntityType.USER);
+        expect(result).toBeNull();
+
+        // case 4: key entityType value does NOT match the expected value
+        key = EntityType.NOTE + localStorageDriver.SEPARATOR + id;
+        result = localStorageDriver.findIdFromKey(key, EntityType.USER);
+        expect(result).toBeNull();
+
+        // case 5: happy path
+        key = EntityType.USER + localStorageDriver.SEPARATOR + id
+        result = localStorageDriver.findIdFromKey(key, EntityType.USER);
+        expect(result).toEqual(id);
+    });
+
+    it('test fetchIds', () => {
+        const noteKey = EntityType.NOTE + localStorageDriver.SEPARATOR + id + '99';
+        const userKey = EntityType.USER + localStorageDriver.SEPARATOR + id;
+
+        vi.mocked(window.sessionStorage.key).mockReturnValueOnce(noteKey);
+        vi.mocked(window.sessionStorage.key).mockReturnValueOnce(userKey);
+
+        const result = localStorageDriver.fetchIds(EntityType.USER);
+        expect(window.sessionStorage.key).toHaveBeenNthCalledWith(1, 0);
+        expect(window.sessionStorage.key).toHaveBeenNthCalledWith(2, 1);
+        expect(result.length).toEqual(1);
+        expect(result[0]).toEqual(id);
     });
 });

@@ -13,4 +13,6 @@ export interface StorageDriverInterface {
     save<Type extends StorageConstraint>(entity: Type): boolean;
     delete<Type extends StorageConstraint>(entity: Type): boolean;
     clear(): boolean;
+    findIdFromKey(key: string, entityType: string): string | null;
+    fetchIds(entityType: string): string[];
 };
