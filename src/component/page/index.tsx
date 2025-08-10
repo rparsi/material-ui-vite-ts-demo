@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { PropsWithChildren } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import ProTip from './ProTip';
-import { useCurrentUserContext } from './component/useCurrentUserContext';
+import { useCurrentUserContext } from '../useCurrentUserContext';
 
 function Copyright() {
   return (
@@ -24,10 +24,11 @@ function Copyright() {
   );
 }
 
-/**
- * Deprecated
- */
-export default function App() {
+type Props = PropsWithChildren & {
+  title: string;
+};
+
+export default function Page<T extends Props>(props: T) {
   const { CurrentUserContext, currentUser } = useCurrentUserContext();
 
   return (
@@ -37,7 +38,7 @@ export default function App() {
           <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
             Material UI Vite.js example in TypeScript
           </Typography>
-          <ProTip />
+          {props.children}
           <Copyright />
         </Box>
       </Container>

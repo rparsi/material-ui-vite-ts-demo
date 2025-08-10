@@ -2,6 +2,7 @@
 Demo of Vite with TypeScript and Material UI
 
 # Dev Notes
+## WSL, Docker & Ubuntu
 - The docker-compose.yml sets the NODE_ENV variable to "production" so if you want to build the app
 with this setting, use `npm install --production=false` so that dev dependencies are also installed.
 
@@ -18,3 +19,17 @@ As per Microsoft documentation:
 WSL shares the IP address of Windows, as it is running on Windows. As such you can access any ports on localhost e.g. if you had web content on port 1234 you could https://localhost:1234 into your Windows browser.
 
 Source: https://learn.microsoft.com/en-us/windows/wsl/faq#how-do-i-access-a-port-from-wsl-in-windows-
+
+# Vite Notes
+
+## NPM: Adding Dependencies
+Use `npm install ...` to add dependencies.  The `package.json` will be automatically updated.
+
+## NPM: Reinstall Everything
+`npm install --dev --production=false`
+Note that you may get warnings about `--dev`, so use this instead
+`npm install --include=dev`
+
+## Dynamic Routing
+Vite by itself does NOT provide dynamic routing (ie a page defined by URI "/entity/:entityName").
+Instead you must rely on the framework selected with Vite, such as React Router for React.
