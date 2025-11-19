@@ -1,6 +1,7 @@
 import { JSX } from 'react';
 import Page from '../../component/page';
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import UrlForm from './UrlForm';
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID' },
@@ -18,7 +19,8 @@ export default function TableDemoPage(): JSX.Element {
     return (
         <Page title='Table Demo'>
             Table demo here.
-            <p>next line</p>
+            <UrlForm/>
+            <p>Results</p>
             <DataGrid
                 rows={rows}
                 columns={columns}
@@ -27,4 +29,4 @@ export default function TableDemoPage(): JSX.Element {
             />
         </Page>
     );
-}
+};
