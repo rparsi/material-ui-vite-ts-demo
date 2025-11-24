@@ -1,5 +1,5 @@
 import { CheckCircleOutline, ErrorOutline } from '@mui/icons-material';
-import isValidUrl from '../../../model/validator/url';
+import isValidUrl from '../../../../model/validator/url';
 
 export enum StatusColour {
     DEFAULT = 'text.secondary',
