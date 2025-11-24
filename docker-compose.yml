@@ -2,7 +2,7 @@
 services:
   node:
     hostname: node.local.dev
-    image: 'node:20.13.1'
+    image: 'node:22.21.1'
     user: "node"
     working_dir: /home/node/app
     environment:

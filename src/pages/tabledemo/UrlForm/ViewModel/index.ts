@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import StateProvider, { UrlFormState } from './StateProvider';
+import StateProvider, { UrlFormState } from '../StateProvider';
 
 export type ViewModel = {
     state: UrlFormState;

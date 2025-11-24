@@ -1,5 +1,5 @@
 import { JSX } from 'react';
-import { TextField, Button, Box, Typography, InputAdornment } from '@mui/material';
+import { TextField, Button, Box, Typography } from '@mui/material';
 import useViewModel from './ViewModel';
 
 export default function UrlForm(): JSX.Element {
